@@ -111,11 +111,40 @@ erDiagram
   NOTIFICATION }o--o| BUDGET : ref
   NOTIFICATION }o--o| SAVINGS_GOAL : ref
   NOTIFICATION }o--o| TRANSACTION : ref
-  ACCOUNT { string id; string type; string currency; int openingBalance; string mask }
-  TRANSACTION { string id; string type; int amount; string currency; string at; string note }
-  BUDGET { string id; int limit; string period; int alertThreshold }
-  SAVINGS_GOAL { string id; int target; string targetDate; int monthlyPlan; string status }
-  NOTIFICATION { string id; string type; bool read; string key }
+  ACCOUNT {
+    string id
+    string type
+    string currency
+    int openingBalance
+    string mask
+  }
+  TRANSACTION {
+    string id
+    string type
+    int amount
+    string currency
+    string at
+    string note
+  }
+  BUDGET {
+    string id
+    int limit
+    string period
+    int alertThreshold
+  }
+  SAVINGS_GOAL {
+    string id
+    int target
+    string targetDate
+    int monthlyPlan
+    string status
+  }
+  NOTIFICATION {
+    string id
+    string type
+    bool read
+    string key
+  }
 ```
 
 - **Facts only.** Records store what happened (transactions, opening balances, limits, targets). Balances, budget spending and goal progress are never stored; `finance.ts` derives them every render, so an edit or delete can't leave a stale or double-counted total.
